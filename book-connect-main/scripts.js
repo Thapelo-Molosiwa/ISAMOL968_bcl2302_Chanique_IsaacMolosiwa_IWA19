@@ -40,7 +40,9 @@ const extracted = books.slice(startIndex, endIndex);
 
 // create preview elements for each book and add them to the document fragment
 for (let i = 0; i < extracted.length; i++) {
+
   const preview = document.createElement("dl");
+
   preview.className = "preview";
   preview.dataset.id = books[i].id;
   preview.dataset.title = books[i].title;
@@ -58,21 +60,26 @@ for (let i = 0; i < extracted.length; i++) {
       <dt class='preview__title'>${books[i].title}<dt>
       <dt class='preview__author'> By ${authors[books[i].author]}</dt>
       </div>`;
+
   fragment.appendChild(preview);
 }
 
 // add the preview elements to the book list
+
 const booklist1 = document.querySelector("[data-list-items]");
+
 booklist1.appendChild(fragment);
 
 // event listener to show the search overlay
 const searchbutton = document.querySelector("[data-header-search]");
+
 searchbutton.addEventListener("click", (event) => {
   document.querySelector("[data-search-overlay]").style.display = "block";
 });
 
 // event listener to hide the search overlay
 const searchCancel = document.querySelector("[data-search-cancel]");
+
 searchCancel.addEventListener("click", (event) => {
   document.querySelector("[data-search-overlay]").style.display = "none";
 });
@@ -80,25 +87,35 @@ searchCancel.addEventListener("click", (event) => {
 // event listener to show the settings overlay
 //Settings
 const settingbutton = document.querySelector("[data-header-settings]");
+
 settingbutton.addEventListener("click", (event) => {
   document.querySelector("[data-settings-overlay]").style.display = "block";
 });
 
 // event listener to hide the settings overlay
 const settingCancel = document.querySelector("[data-settings-cancel]");
+
 settingCancel.addEventListener("click", (event) => {
   document.querySelector("[data-settings-overlay]").style.display = "none";
 });
 
 // function to display book details ......code to display book details
 const detailsToggle = (event) => {
+
   const overlay1 = document.querySelector("[data-list-active]");
+
   const title = document.querySelector("[data-list-title]");
+
   const subtitle = document.querySelector("[data-list-subtitle]");
+
   const description = document.querySelector("[data-list-description]");
+
   const image1 = document.querySelector("[data-list-image]");
+
   const imageblur = document.querySelector("[data-list-blur]");
+
   event.target.dataset.id ? (overlay1.style.display = "block") : undefined;
+
   event.target.dataset.description
     ? (description.innerHTML = event.target.dataset.description)
     : undefined;
@@ -118,6 +135,7 @@ const detailsToggle = (event) => {
 
 // selecting and adding click event to close button
 const detailsClose = document.querySelector("[data-list-close]");
+
 detailsClose.addEventListener("click", (event) => {
   document.querySelector("[data-list-active]").style.display = "none";
 });
@@ -135,6 +153,7 @@ const allAuthorOption = document.createElement('option');
 allAuthorOption.value = "authors";
 allAuthorOption.textContent = "All Authors";
 authorSelect.appendChild(allAuthorOption);
+
 for (const authorId in authors) {
   const optionElement = document.createElement("option");
   optionElement.value = authorId;
@@ -148,6 +167,7 @@ const allGenreOption = document.createElement('option');
 allGenreOption.value = "all";
 allGenreOption.textContent = "All Genres";
 genreSelect.appendChild(allGenreOption);
+
 for (const genreId in genres) {
   const optionElement = document.createElement("option");
   optionElement.value = genreId;
@@ -160,8 +180,10 @@ const dataSettingsTheme = document.querySelector("[data-settings-theme]");
 const saveButton = document.querySelector(
   "body > dialog:nth-child(5) > div > div > button.overlay__button.overlay__button_primary"
 );
+
 saveButton.addEventListener("click", (event) => {
   event.preventDefault();
+
   if (dataSettingsTheme.value === "day") {
     document.querySelector("body").style.setProperty("--color-dark", day.dark);
     document
@@ -188,7 +210,7 @@ const showMoreButton = document.querySelector("[data-list-button]");
 
 const numItemsToShow = books.length - endIndex;
 
-showMoreButton.innerHTML = `show more(${numItemsToShow})`;
+showMoreButton.innerHTML = `show more(${books.length - range})`;
 
 showMoreButton.addEventListener("click", () => {
   // create a document fragment to store elements before adding to the DOM
