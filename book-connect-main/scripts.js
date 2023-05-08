@@ -183,7 +183,6 @@ const saveButton = document.querySelector(
 
 saveButton.addEventListener("click", (event) => {
   event.preventDefault();
-
   if (dataSettingsTheme.value === "day") {
     document.querySelector("body").style.setProperty("--color-dark", day.dark);
     document
@@ -210,7 +209,7 @@ const showMoreButton = document.querySelector("[data-list-button]");
 
 const numItemsToShow = books.length - endIndex;
 
-showMoreButton.innerHTML = `show more(${books.length - range})`;
+showMoreButton.innerHTML = `show more(${numItemsToShow})`;
 
 showMoreButton.addEventListener("click", () => {
   // create a document fragment to store elements before adding to the DOM
